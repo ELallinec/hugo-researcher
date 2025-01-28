@@ -3,8 +3,10 @@ $max-width: {{ .Param "style.pageWidth" | default "750px;" }};
 $avatar-size: {{ .Param "style.avatarSize" | default "90px;" }};
 
 // Colors
-$black: {{ .Param "style.colorBlack" | default "#222222" }};
+$black: {{ .Param "style.colorBlack" | default "#000000" }}; // Updated for true black
 $red: {{ .Param "style.colorRed" | default "#dc3545" }};
+$gray: #1e1e1e; // Dark gray for subtle elements
+$text-color: #e0e0e0; // Light gray for text on dark background
 
 // Font
 $font-family: {{ .Param "style.fontFamily" | default "Inconsolata" }};
@@ -27,35 +29,50 @@ $y-medium: 1.0rem;
     }
 }
 %link-dark {
-    color: $black;
+    color: $red;
     text-decoration: none;
     & * {
-        color: $black;
+        color: $red;
     }
     &:hover {
-        color: $black;
+        color: $red;
         text-decoration: underline;
     }
 }
 %table-cell {
-    border: 1px solid #cccccc;
+    border: 1px solid $gray;
     padding: 6px 12px;
     text-align: left;
 }
 
 // Style
+html {
+    background-color: $black;
+}
+body {
+    background-color: $black;
+    color: $text-color;
+}
 * {
-    color: $black;
+    color: $text-color;
     font-family: $font-family;
     font-size: $font-size;
     line-height: 1.2;
+    background-color: $black !important;
 }
 .container {
     max-width: $max-width;
+    background-color: $black;
 }
 .navbar-brand {
     @extend %link-dark;
     font-size: 2rem;
+    color: $text-color !important; // Main title link in white
+    text-decoration: none;
+    &:hover {
+        color: $text-color !important; // Ensure hover stays white
+        text-decoration: underline;
+    }
 }
 .nav-link {
     @extend %link-default;
@@ -124,12 +141,16 @@ $y-medium: 1.0rem;
         & th {
             @extend %table-cell;
             font-weight: bold;
+            background-color: $gray;
+            color: $text-color;
         }
         & td {
             @extend %table-cell;
+            background-color: $gray;
+            color: $text-color;
         }
         & tr:nth-child(2n) {
-            background-color: #f8f8f8;
+            background-color: $black;
         }
     }
     blockquote {
@@ -137,11 +158,13 @@ $y-medium: 1.0rem;
         font-style: italic;
         margin: $y-medium 0;
         padding: 8px 8px;
+        color: $text-color;
+        background-color: $gray;
     }
     code {
-        color: $black;
-        background-color: #f8f8f8;
-        border: 1px solid #cccccc;
+        color: $text-color;
+        background-color: $gray;
+        border: 1px solid $gray;
         border-radius: 10%;
         padding: 0px 4px;
     }
@@ -152,11 +175,20 @@ $y-medium: 1.0rem;
         margin: $y-medium auto;
         & > pre {
             padding: 8px 8px;
+            background-color: $gray;
+            color: $text-color;
         }
     }
 }
 #footer {
     a {
         @extend %link-dark;
+        color: $text-color !important; // Made by Ewen Lallinec link in white
+        text-decoration: none;
+        &:hover {
+            color: $text-color !important;
+            text-decoration: underline;
+        }
     }
 }
+
