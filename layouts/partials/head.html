@@ -1,4 +1,12 @@
 <head>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-W9B2JRFWV7"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-W9B2JRFWV7');
+    </script>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
@@ -20,9 +28,6 @@
         {{ printf `<link rel="%s" type="%s" href="%s" title="%s" />` .Rel .MediaType.Type .Permalink $.Site.Title | safeHTML }}
     {{ end -}}
 
-    {{- if not hugo.IsServer -}}
-        {{- partial "googleanalytics.html" . -}}
-    {{- end -}}
 
     {{ if .Params.noindex -}}
     <meta name="robots" content="noindex">
