@@ -1,4 +1,22 @@
 <head>
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "{{ .Site.Params.author }}",
+    "url": "{{ .Site.BaseURL }}",
+    "sameAs": [
+        "{{ .Site.Params.social.github }}",
+        "{{ .Site.Params.social.linkedin }}"
+    ],
+    "jobTitle": "Researcher",
+    "worksFor": {
+        "@type": "Organization",
+        "name": "Université Paris-Saclay"
+    }
+}
+</script>
+
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-W9B2JRFWV7"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
@@ -28,6 +46,9 @@
         {{ printf `<link rel="%s" type="%s" href="%s" title="%s" />` .Rel .MediaType.Type .Permalink $.Site.Title | safeHTML }}
     {{ end -}}
 
+    {{- if not hugo.IsServer -}}
+        {{- partial "googleanalytics.html" . -}}
+    {{- end -}}
 
     {{ if .Params.noindex -}}
     <meta name="robots" content="noindex">
