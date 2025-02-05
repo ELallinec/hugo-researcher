@@ -3,10 +3,8 @@ $max-width: {{ .Param "style.pageWidth" | default "750px;" }};
 $avatar-size: {{ .Param "style.avatarSize" | default "90px;" }};
 
 // Colors
-$black: {{ .Param "style.colorBlack" | default "#000000" }}; // Updated for true black
+$black: {{ .Param "style.colorBlack" | default "#222222" }};
 $red: {{ .Param "style.colorRed" | default "#dc3545" }};
-$gray: #1e1e1e; // Dark gray for subtle elements
-$text-color: #e0e0e0; // Light gray for text on dark background
 
 // Font
 $font-family: {{ .Param "style.fontFamily" | default "Inconsolata" }};
@@ -29,50 +27,35 @@ $y-medium: 1.0rem;
     }
 }
 %link-dark {
-    color: $red;
+    color: $black;
     text-decoration: none;
     & * {
-        color: $red;
+        color: $black;
     }
     &:hover {
-        color: $red;
+        color: $black;
         text-decoration: underline;
     }
 }
 %table-cell {
-    border: 1px solid $gray;
+    border: 1px solid #cccccc;
     padding: 6px 12px;
     text-align: left;
 }
 
 // Style
-html {
-    background-color: $black;
-}
-body {
-    background-color: $black;
-    color: $text-color;
-}
 * {
-    color: $text-color;
+    color: $black;
     font-family: $font-family;
     font-size: $font-size;
     line-height: 1.2;
-    background-color: $black !important;
 }
 .container {
     max-width: $max-width;
-    background-color: $black;
 }
 .navbar-brand {
     @extend %link-dark;
     font-size: 2rem;
-    color: $text-color !important; // Main title link in white
-    text-decoration: none;
-    &:hover {
-        color: $text-color !important; // Ensure hover stays white
-        text-decoration: underline;
-    }
 }
 .nav-link {
     @extend %link-default;
@@ -141,16 +124,12 @@ body {
         & th {
             @extend %table-cell;
             font-weight: bold;
-            background-color: $gray;
-            color: $text-color;
         }
         & td {
             @extend %table-cell;
-            background-color: $gray;
-            color: $text-color;
         }
         & tr:nth-child(2n) {
-            background-color: $black;
+            background-color: #f8f8f8;
         }
     }
     blockquote {
@@ -158,13 +137,11 @@ body {
         font-style: italic;
         margin: $y-medium 0;
         padding: 8px 8px;
-        color: $text-color;
-        background-color: $gray;
     }
     code {
-        color: $text-color;
-        background-color: $gray;
-        border: 1px solid $gray;
+        color: $black;
+        background-color: #f8f8f8;
+        border: 1px solid #cccccc;
         border-radius: 10%;
         padding: 0px 4px;
     }
@@ -175,20 +152,77 @@ body {
         margin: $y-medium auto;
         & > pre {
             padding: 8px 8px;
-            background-color: $gray;
-            color: $text-color;
         }
     }
 }
 #footer {
     a {
         @extend %link-dark;
-        color: $text-color !important; // Made by Ewen Lallinec link in white
-        text-decoration: none;
-        &:hover {
-            color: $text-color !important;
-            text-decoration: underline;
-        }
     }
 }
 
+body {
+    background-color:#f2f2f2 
+}
+
+li {
+margin: 10px
+}
+
+body.dark-mode, 
+body.dark-mode main * {
+    background-color: #1e1e1e;
+    color: #d3d3d3; /* Light grey for better readability */
+}
+
+body.dark-mode a {
+    color: #ff5252;
+}
+body.dark-mode strong {
+    color: #ffffff;
+}
+
+body.dark-mode  em {
+    color: #ffffff;
+}
+body.dark-mode h1, 
+body.dark-mode h2, 
+body.dark-mode h3, 
+body.dark-mode h4, 
+body.dark-mode h5, 
+body.dark-mode h6 {
+    color: #ffffff;
+}
+
+body.dark-mode button {
+    background-color: #ffffff;
+    color: #ffffff;
+    border: 1px solid #555;
+}
+
+body.dark-mode code, 
+body.dark-mode pre {
+    background-color: #292929;
+    color: #ffcc99;
+    border-radius: 5px;
+    padding: 4px;
+}
+body.dark-mode .navbar-brand {
+    color: #ffffff !important;
+}
+body.dark-mode p, 
+body.dark-mode span, 
+body.dark-mode li, 
+body.dark-mode div {
+    color: #ffffff !important; /* Updated to light grey */
+}
+
+body.dark-mode #footer a, 
+body.dark-mode #footer small, 
+body.dark-mode #footer i {
+    color: #d3d3d3 !important;
+}
+
+body.dark-mode li {
+margin: 10px
+}
